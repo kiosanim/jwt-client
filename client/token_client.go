@@ -81,7 +81,7 @@ func (t *tokenClient) refreshTokens(uri_token string) error {
 	form.Add("grant_type", "refresh_token")
 	form.Add("client_id", t.credentials.ClientID)
 	form.Add("client_secret", t.credentials.ClientSecret)
-	form.Add("refresh_token", viper.GetString(t.CurrentTokens.RefreshToken))
+	form.Add("refresh_token", t.CurrentTokens.RefreshToken)
 	req, err := http.NewRequest("POST", uri_token, strings.NewReader(form.Encode()))
 	if err != nil {
 		log.Fatal(err)
@@ -113,7 +113,7 @@ func (t *tokenClient) Logout(uri_logout string) error {
 	form := url.Values{}
 	form.Add("client_id", t.credentials.ClientID)
 	form.Add("client_secret", t.credentials.ClientSecret)
-	form.Add("refresh_token", viper.GetString(t.CurrentTokens.RefreshToken))
+	form.Add("refresh_token", t.CurrentTokens.RefreshToken)
 	req, err := http.NewRequest("POST", uri_logout, strings.NewReader(form.Encode()))
 	if err != nil {
 		log.Fatal(err)
