@@ -48,7 +48,6 @@ func (t *tokenClient) authenticate(uri_token string) error {
 	form.Add("password", t.credentials.Password)
 	form.Add("client_id", t.credentials.ClientID)
 	form.Add("client_secret", t.credentials.ClientSecret)
-	//uri := viper.GetString("TOKEN_ROUTE")
 	req, err := http.NewRequest("POST", uri_token, strings.NewReader(form.Encode()))
 	if err != nil {
 		log.Println(err)
